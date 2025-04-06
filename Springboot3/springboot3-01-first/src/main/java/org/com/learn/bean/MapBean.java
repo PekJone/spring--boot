@@ -7,22 +7,27 @@ import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author 王朋飞
  * @version 1.0
- * @date 2025-04-06  10:41
+ * @date 2025-04-06  17:41
  */
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Configuration
-@ConfigurationProperties(prefix = "myapp")
-public class User {
-    private String username;
-    private String password;
+@ConfigurationProperties(prefix = "app2.abc")
+public class MapBean {
 
-    private Integer age;
+    private String[] names;
 
+    private Address[] addresses;
 
+    private List<Address>  addressList;
+
+    private Map<String,Address> addrs ;
 }

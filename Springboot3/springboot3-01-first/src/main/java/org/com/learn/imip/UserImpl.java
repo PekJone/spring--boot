@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserImpl implements UserService {
-    User user = new User("Json","123456");
+    User user = null;
     @Override
     public User findUser() {
         return user;

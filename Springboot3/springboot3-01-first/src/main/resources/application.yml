@@ -1,0 +1,48 @@
+
+spring:
+  application:
+   name: springBoot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot
+    username: root
+    password: 123456
+
+
+myapp:
+  username: wang
+  password: 123456
+  age: 2
+
+app:
+  name: testwang
+  address:
+    city: taiyuan
+    street: yihao
+
+
+app2:
+  abc:
+    names[0]: wang
+    names[1]: chen
+    addresses[0]:
+      city: Beijing
+      street: chaoyang
+    addresses[1]:
+      city: Beijing1
+      street: chaoyang1
+    addressList[0]:
+      city: Beijing_list
+      street: chaoyang_list
+    addressList[1]:
+      city: Beijing1_list
+      street: chaoyang1_list
+    addrs:
+      addr1:
+        city: Beijing_Map
+        street: chaoyang_Map
+      addr2:
+        city: Beijing1_Map
+        street: chaoyang_Map
+
+

@@ -15,7 +15,7 @@ public class SystemService {
 
     @Value("${spring.datasource.password}")
     private String password;
-    @Value("${spring.datasource.type}")
+    @Value("${spring.datasource.password}")
     private String path ;
 
     public void info(){
