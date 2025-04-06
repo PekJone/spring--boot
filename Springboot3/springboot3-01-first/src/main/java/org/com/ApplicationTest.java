@@ -1,6 +1,7 @@
 package org.com;
 
 import org.com.learn.bean.User;
+import org.com.learn.service.SystemService;
 import org.com.learn.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,16 @@ public class ApplicationTest {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private SystemService systemService;
     @Test
     void test01(){
         User user = userService.findUser();
         System.out.println(user);
+    }
+    @Test
+    void test02(){
+        systemService.info();
     }
 }
 
