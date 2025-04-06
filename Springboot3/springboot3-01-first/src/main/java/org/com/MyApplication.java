@@ -12,6 +12,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MyApplication {
 
     public static void main(String[] args) {
+        /**
+         * run方法的第一个参数实际就是一个配置类 对应以前 配置文件
+         *
+         */
+
         SpringApplication.run(MyApplication.class);
     }
 }
