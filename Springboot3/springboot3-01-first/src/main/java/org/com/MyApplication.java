@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date ${YEAR}-${MONTH}-${DAY}  ${TIME}
  */
 
+
 @SpringBootApplication
 public class MyApplication {
 
