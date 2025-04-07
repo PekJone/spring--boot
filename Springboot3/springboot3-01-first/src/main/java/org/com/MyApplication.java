@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  * @date ${YEAR}-${MONTH}-${DAY}  ${TIME}
  */
-
+@MapperScan(basePackages = {"org.com.learn.mapper"})
 @EnableAutoConfiguration
 @SpringBootApplication
 public class MyApplication {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.com.learn.mapper.VipMapper">
+    <insert id="insert" parameterType="org.com.learn.bean.Vip">
+          insert into t_vip(id,names,card_number,birth) values(null,#{names},#{cardNumber},#{birth})
+    </insert>
+    <select id="selectAll" resultType="org.com.learn.bean.Vip">
+        select id as id,
+        names as names,
+        card_number as cardNumber ,
+        birth
+        from t_vip
+    </select>
+</mapper>
