@@ -16,4 +16,14 @@ public class UserImpl implements UserService {
     public User findUser() {
         return user;
     }
+
+    @Override
+    public void save(String username, String password, Integer age) {
+        System.out.println("正在保存用户信息"+username);
+    }
+
+    @Override
+    public void deleteByName(String username) {
+        System.out.println("正在删除用户信息"+username);
+    }
 }
