@@ -1,5 +1,6 @@
 package org.com.learn.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.com.learn.bean.Vip;
 import org.com.learn.service.VipService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,10 @@ public class VipController {
             System.out.println(vip.toString());
         }
         return vips;
+    }
+
+    @GetMapping("/detail")
+    public Vip findByCardNumber(@RequestParam("cardNumber") String cardNumber){
+        return vipService.selectByCardNumber(cardNumber);
     }
 }

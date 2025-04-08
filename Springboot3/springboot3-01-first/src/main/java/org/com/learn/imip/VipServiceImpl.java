@@ -26,4 +26,9 @@ public class VipServiceImpl implements VipService {
     public List<Vip> findAll() {
         return vipMapper.selectAll();
     }
+
+    @Override
+    public Vip selectByCardNumber(String cardNumber) {
+        return vipMapper.selectByCardNumber(cardNumber);
+    }
 }

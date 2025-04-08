@@ -11,4 +11,7 @@
         birth
         from t_vip
     </select>
+    <select id="selectByCardNumber" resultType="org.com.learn.bean.Vip">
+        select * from t_vip where card_number=#{cardNumber}
+    </select>
 </mapper>

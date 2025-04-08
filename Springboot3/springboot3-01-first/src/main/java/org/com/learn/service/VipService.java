@@ -13,4 +13,7 @@ public interface VipService {
     boolean save(Vip vip);
 
     List<Vip> findAll();
+
+
+    Vip selectByCardNumber(String cardNumber);
 }

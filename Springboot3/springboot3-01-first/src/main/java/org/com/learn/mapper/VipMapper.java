@@ -24,4 +24,6 @@ public interface VipMapper {
      * @return
      */
     List<Vip>  selectAll();
+
+    Vip selectByCardNumber(String cardNumber);
 }
