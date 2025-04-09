@@ -8,6 +8,22 @@ spring:
     username: root
     password: 123456
     type: com.zaxxer.hikari.HikariDataSource
+#让springboot的静态资源处理失效
+#  web:
+#    resources:
+#      add-mappings: false
+#  web:
+#    resources:
+#      cache:
+#        period: 100
+#        cachecontrol:
+#          max-age: 20
+#          #缓存位置设置，可以在任何地方缓存
+#          cache-public: true
+#        #是否启用最后一次修改时间的比对
+#        use-last-modified: true
+  mvc:
+    static-path-pattern: /**
 
 mybatis:
   mapper-locations:
