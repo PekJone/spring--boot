@@ -1,9 +1,13 @@
 package org.com.learn.config;
 
+import org.com.learn.component.YamlHttpMessageConverter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 /**
  * @author 王朋飞
@@ -26,8 +30,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //    }
 //}
 
-//添加这个注解之后，表示不在使用springboot提供的默认的自动配置
-@EnableWebMvc
+
 //一下配置使用自己的 不再基于springboot的配置自动扩站
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -40,5 +43,10 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/static1/", "classpath:/static1/");//配置静态资源路径
 
 
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+       converters.add(new YamlHttpMessageConverter());
     }
 }

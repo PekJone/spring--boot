@@ -77,6 +77,11 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- 将java对象转换成yaml格式的字符串  逆向也可以-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>
