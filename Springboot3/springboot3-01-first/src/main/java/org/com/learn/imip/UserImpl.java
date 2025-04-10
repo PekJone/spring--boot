@@ -1,6 +1,7 @@
 package org.com.learn.imip;
 
 import org.com.learn.bean.User;
+import org.com.learn.bean.UserTest;
 import org.com.learn.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserImpl implements UserService {
-    User user = null;
+    UserTest user = null;
     @Override
-    public User findUser() {
+    public UserTest findUser() {
         return user;
     }
 
@@ -25,5 +26,10 @@ public class UserImpl implements UserService {
     @Override
     public void deleteByName(String username) {
         System.out.println("正在删除用户信息"+username);
+    }
+
+    @Override
+    public User findUserById() {
+        return new User("wang",30);
     }
 }

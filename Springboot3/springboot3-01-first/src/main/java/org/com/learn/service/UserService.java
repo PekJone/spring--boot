@@ -1,7 +1,7 @@
 package org.com.learn.service;
 
 import org.com.learn.bean.User;
-import org.springframework.stereotype.Component;
+import org.com.learn.bean.UserTest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface UserService {
-    User findUser();
+    UserTest findUser();
 
     void save(String username,String password,Integer age);
 
     void deleteByName(String username);
+
+    User findUserById();
 }

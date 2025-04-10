@@ -1,28 +1,20 @@
 package org.com.learn.bean;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author 王朋飞
  * @version 1.0
- * @date 2025-04-06  10:41
+ * @date 2025-04-10  9:20
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Configuration
-@ConfigurationProperties(prefix = "myapp")
+//@JacksonXmlRootElement //将java对象转换成xml文件的字符串
 public class User {
     private String username;
-    private String password;
-
     private Integer age;
-
-
 }

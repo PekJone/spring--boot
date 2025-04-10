@@ -41,8 +41,33 @@ http:响应协议：
      响应体
 
 springBoot普通静态资源处理：根据控制器方法优先原则，会先去找合适的控制器方法，如果没有合适的控制器方法，静态资源处理才会生效，
-自动匹配类路劲西安的四个位置： 资源访问的优先级也是按照从上到下的顺序来找
+自动匹配类路经的四个位置： 资源访问的优先级也是按照从上到下的顺序来找
     classpath:/META-INF/resource  资源会被自动加载  不受手动配置的影响
     classpath:/resource/
     classpath:/static/
     classpath:/public/
+
+指定服务器返回数据格式的方式：
+    1、Accept的方式指定：优先使用这种方式
+        curl -H "Accept:Application/json" http://localhost:8080/detail
+        curl -H "Accept:Application/xml" http://localhost:8080/detail
+    2、format格式指定,需要做一下配置，如果没有一下配置，默认使用Accept方式
+        mvc:
+            contentnegotiation:
+                favor-parameter:
+                    true
+        curl  http://localhost:8080/detail?format=xml
+
+
+  <!--可以将java对象转换成xml格式的字符串 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+
+常见的HttpMessageConvert
+   【请求】：提交表单(form)数据转换成Java对象主要任务由FormMessageConvert消息转换器完成
+   【请求】【响应】：提交JSON的数据转换成JAVA对象主要任务由MappingJackson2HttpMessageConvert消息转换完成（通常使用@RequestBody注解）
+   【响应】：将JAVA对象转换成Xml格式，并将其写入响应体，JaxXRootElementHttpMessageConvert
+   【响应】:将String直接写入到响应体  StringHttpMessageConvert
+   

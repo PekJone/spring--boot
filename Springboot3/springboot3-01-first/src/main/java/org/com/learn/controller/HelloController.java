@@ -2,6 +2,7 @@ package org.com.learn.controller;
 
 import org.com.learn.bean.Student;
 import org.com.learn.bean.User;
+import org.com.learn.bean.UserTest;
 import org.com.learn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @Autowired
-    private User user;
+    private UserTest user;
 
     @Autowired
     private UserService userService;
@@ -41,6 +42,10 @@ public class HelloController {
         userService.save("wang","123",23);
         userService.deleteByName("wang");
         System.out.println("test");
+    }
+    @GetMapping("/detail")
+    public User detail(){
+        return userService.findUserById();
     }
 
 

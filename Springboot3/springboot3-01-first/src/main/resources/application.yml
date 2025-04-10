@@ -24,6 +24,9 @@ spring:
 #        use-last-modified: true
   mvc:
     static-path-pattern: /**
+    contentnegotiation:
+      favor-parameter:
+        true
 
 mybatis:
   mapper-locations:
