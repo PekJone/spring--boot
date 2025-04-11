@@ -70,4 +70,9 @@ springBoot普通静态资源处理：根据控制器方法优先原则，会先�
    【请求】【响应】：提交JSON的数据转换成JAVA对象主要任务由MappingJackson2HttpMessageConvert消息转换完成（通常使用@RequestBody注解）
    【响应】：将JAVA对象转换成Xml格式，并将其写入响应体，JaxXRootElementHttpMessageConvert
    【响应】:将String直接写入到响应体  StringHttpMessageConvert
+
+
+@ControllerAdvice + @ExceptionHandler 可以用来定义全局异常处理器  针对所有的控制器都有效
    
+
+@ExceptionHandler(YiChang.class)  当发生YiChang.class异常时  调用注解的方法
