@@ -1,8 +1,12 @@
 package org.com.learn.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
 import org.com.learn.bean.Vip;
+import org.com.learn.result.Result;
 import org.com.learn.service.VipService;
+import org.com.learn.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,17 +28,18 @@ public class VipController {
     public boolean saveVip(@RequestBody Vip vip){
         return vipService.save(vip);
     }
-    @GetMapping("/findAll")
-    public List<Vip> findAll(){
+    @GetMapping("/findAll/{pageNo}")
+    public Result<PageInfo<Vip>> findAll(@PathVariable int pageNo){
+
+        PageHelper.startPage(pageNo, Constant.PAGE_SIZE);
         List<Vip> vips = vipService.findAll();
-        for (Vip vip: vips) {
-            System.out.println(vip.toString());
-        }
-        return vips;
+
+        PageInfo<Vip> vipPageInfo = new PageInfo<>(vips);
+        return Result.OK(vipPageInfo);
     }
 
     @GetMapping("/detail")
-    public Vip findByCardNumber(@RequestParam("cardNumber") String cardNumber){
-        return vipService.selectByCardNumber(cardNumber);
+    public Result<Vip> findByCardNumber(@RequestParam("cardNumber") String cardNumber){
+        return Result.OK(vipService.selectByCardNumber(cardNumber));
     }
 }

@@ -1,9 +1,11 @@
 package org.com;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * @author 王朋飞
@@ -25,5 +27,12 @@ public class MyApplication {
          */
 
         SpringApplication.run(MyApplication.class);
+
+//        SpringApplication springApplication = new SpringApplication(MyApplication.class);
+//        springApplication.setBannerMode(Banner.Mode.OFF);
+//        springApplication.run(args);
+
+
+//        new SpringApplicationBuilder().sources(MyApplication.class).bannerMode(Banner.Mode.OFF).run(args);
     }
 }
