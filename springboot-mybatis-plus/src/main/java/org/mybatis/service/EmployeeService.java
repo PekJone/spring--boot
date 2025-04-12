@@ -1,5 +1,6 @@
 package org.mybatis.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.mybatis.bean.Employee;
 
@@ -10,4 +11,5 @@ import org.mybatis.bean.Employee;
  */
 public interface EmployeeService extends IService<Employee> {
 
+    IPage<Employee> myGetAllByGender(IPage iPage,Integer gender);
 }

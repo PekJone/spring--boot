@@ -1,6 +1,8 @@
 package org.mybatis.controller;
 
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.mybatis.bean.Employee;
 import org.mybatis.result.Result;
 import org.mybatis.service.EmployeeService;
@@ -57,6 +59,18 @@ public class EmployeeController {
        return Result.OK(employeeList);
    }
 
-
+   @GetMapping("/testPage")
+   public Result<List<Employee>> testPage(){
+       IPage<Employee> iPage = new Page<>(1,8);
+       IPage<Employee> page = employeeService.page(iPage);
+       List<Employee> records = page.getRecords();
+       return Result.OK(records);
+   }
+   @GetMapping("/myGetAllByGender")
+   public Result<List<Employee>> myGetAllByGender(){
+        IPage<Employee> iPage = new Page<>(1,8);
+        List<Employee> list = employeeService.myGetAllByGender(iPage,2).getRecords();
+        return Result.OK(list);
+   }
 
 }
