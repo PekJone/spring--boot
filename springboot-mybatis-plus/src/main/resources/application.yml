@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: springBoot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot3
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+
+logging:
+  level:
+    org:
+      com:
+        learn:
+          mapper: debug
+    root: info
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
