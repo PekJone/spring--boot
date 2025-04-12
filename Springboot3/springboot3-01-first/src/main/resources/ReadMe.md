@@ -76,3 +76,32 @@ springBoot普通静态资源处理：根据控制器方法优先原则，会先�
    
 
 @ExceptionHandler(YiChang.class)  当发生YiChang.class异常时  调用注解的方法
+
+配置日志级别：
+1、项目级别的日志配置： logging.level.root=debug
+2、为特定的包设置日志级别：logging.level.org.com.learn.config=debug
+3、为特定的类设置日志级别：logging.level.org.com.learn.config=info
+4、打印SQL相关的日志：logging.level.org.com.learn.mapper=debug
+
+日志输出到文件：
+方式1： :logging.file.path= ./log/
+方式2：logging.file.name=my.log  日志文件生成到项目的艮路径下 无法设置文件位置  
+如果两种方式同时存在 则方式一失效  
+
+#打印SQL日志
+logging:
+logback:
+rollingpolicy:
+#启动项目时是否清理归档日志
+clean-history-on-start: false
+#日志文件达到多大时进行归档
+max-file-size: 100MB
+#归档日志文件最多保留几天
+max-history: 60
+#所有归档日志文件达到多大时进行删除  默认0B  表示不删除
+total-size-cap: 50GB
+#归档文件日志名的格式
+file-name-pattern: ${LOG.FILE}.%d{yyyy-MM-dd}.%i.gz
+
+
+

@@ -11,6 +11,7 @@ import java.util.List;
  * @date 2025-04-07  15:26
  */
 
+@Mapper
 public interface VipMapper {
     /**
      * 保存信息

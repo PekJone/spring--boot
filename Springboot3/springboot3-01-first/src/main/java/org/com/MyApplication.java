@@ -1,5 +1,6 @@
 package org.com;
 
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  * @version 1.0
  * @date ${YEAR}-${MONTH}-${DAY}  ${TIME}
  */
+@Slf4j
 @MapperScan(basePackages = {"org.com.learn.mapper"})
 @EnableAutoConfiguration
 @SpringBootApplication
@@ -27,7 +29,11 @@ public class MyApplication {
          */
 
         SpringApplication.run(MyApplication.class);
-
+        log.trace("trace级别的日志");
+        log.debug("debug级别的日志");
+        log.info("info级别的日志");
+        log.warn("warn级别的日志");
+        log.error("error级别的日志");
 //        SpringApplication springApplication = new SpringApplication(MyApplication.class);
 //        springApplication.setBannerMode(Banner.Mode.OFF);
 //        springApplication.run(args);

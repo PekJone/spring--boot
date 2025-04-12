@@ -13,6 +13,30 @@ spring:
     username: root
     password: 123456
     type: com.zaxxer.hikari.HikariDataSource
+
+#答打印SQL日志
+logging:
+  logback:
+    rollingpolicy:
+      #启动项目时是否清理归档日志
+      clean-history-on-start: false
+      #日志文件达到多大时进行归档
+      max-file-size: 100KB
+      #归档日志文件最多保留几天
+      max-history: 60
+      #所有归档日志文件达到多大时进行删除  默认0B  表示不删除
+      total-size-cap: 50GB
+      #归档文件日志名的格式
+      file-name-pattern: ${LOG.FILE}.%d{yyyy-MM-dd}.%i.gz
+
+  file:
+    path: ./log/
+  level:
+    org:
+      com:
+        learn:
+          mapper:
+            debug
 #让springboot的静态资源处理失效
 #  web:
 #    resources:
@@ -36,7 +60,11 @@ mybatis:
   #自动映射表的列名和bean的属性名  启动自动映射
   configuration:
     map-underscore-to-camel-case: true
-
+#mybatis-plus:
+#  mapper-locations: classpath:/mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true
 #myapp:
 #  username: wang
 #  password: 123456
