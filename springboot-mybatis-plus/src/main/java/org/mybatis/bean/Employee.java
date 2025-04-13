@@ -1,10 +1,10 @@
 package org.mybatis.bean;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.*;
 import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 /**
  * @author 王朋飞
@@ -26,6 +26,16 @@ public class Employee {
     private Integer gender;
 
     private Integer age;
+
+
+    private Integer enabled;
+
+    @TableField(fill = FieldFill.INSERT)
+    private Date createDate;
+
+    @TableField(fill =FieldFill.UPDATE )
+    private Date modifyDate;
+
 
 
 }

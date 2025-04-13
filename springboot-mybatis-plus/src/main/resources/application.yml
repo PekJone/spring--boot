@@ -2,8 +2,8 @@ spring:
   application:
     name: springBoot
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/springboot3
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver #com.mysql.cj.jdbc.Driver
+    url: jdbc:p6spy:mysql://localhost:3306/springboot3
     username: root
     password: 123456
     type: com.zaxxer.hikari.HikariDataSource
@@ -19,5 +19,10 @@ logging:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: enabled
+      logic-delete-value: 0  #删除的数据
+      logic-not-delete-value: 1 #有效的数据
 
 
