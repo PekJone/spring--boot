@@ -39,6 +39,21 @@ public class EmployeeController {
         employeeService.saveBatch(list);
     }
 
+
+    @GetMapping("/initDataOne")
+    public void initDataOne(){
+            Employee employee = new Employee();
+            employee.setAge(12).setGender(1).setEmail("wangWu"+12+"@163.com").setLastName("王6"+12);
+            employeeService.save(employee);
+    }
+
+
+    @GetMapping("/updateOne")
+    public void updateOne(){
+        Employee employee = new Employee();
+        employee.setId(12L).setAge(12).setGender(1).setEmail("wangWu"+12+"@163.com").setLastName("王6"+12);
+        employeeService.saveOrUpdate(employee);
+    }
     @GetMapping("/detail/{id}")
     public Result<Employee> detail(@PathVariable("id") Long id){
         Employee employee = employeeService.getById(id);
