@@ -21,6 +21,10 @@ public enum CodeEnum {
     MODIFICATION_FAILED(400,"修改失败"),
     DELETION_FAILED(400,"删除失败");
     ;
+
+
+
+
     @Getter
     @Setter
     private int code;
