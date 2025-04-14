@@ -25,4 +25,3 @@ mybatis-plus:
       logic-delete-value: 0  #删除的数据
       logic-not-delete-value: 1 #有效的数据
 
-
