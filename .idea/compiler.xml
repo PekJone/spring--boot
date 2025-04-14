@@ -9,11 +9,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-mybatis-plus" />
         <module name="springboot3-01-first" />
+        <module name="mybatis-plus-generator-code" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mybatis-plus-generator-code" options="-parameters" />
       <module name="springboot-mybatis-plus" options="-parameters" />
       <module name="springboot3-01-first" options="-parameters" />
     </option>
