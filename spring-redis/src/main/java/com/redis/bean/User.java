@@ -3,6 +3,7 @@ package com.redis.bean;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Value;
 import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,12 +19,13 @@ import java.util.Date;
  * @version 1.0
  * @date 2025-04-14  16:47
  */
-@Accessors
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS,include = JsonTypeInfo.As.PROPERTY,property = "@class")
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @TableName(value = "user")
-public class User {
+public class User implements Serializable {
     @Id
     private int id;
     @TableField(value = "username")
