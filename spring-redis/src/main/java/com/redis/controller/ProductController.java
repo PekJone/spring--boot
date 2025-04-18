@@ -1,15 +1,20 @@
 package com.redis.controller;
 
+import com.redis.Util.Constants;
 import com.redis.bean.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Field;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,6 +55,26 @@ public class ProductController {
         Object price2 = this.redisTemplate.opsForHash().get(key,"price");
         log.info("price={}",price2);
     }
+    /**
+     * 分页查询 在高并发的情况下 只能走redis查询，走db的话 会被打垮
+     */
+    @GetMapping("/find")
+    public List<Product> find(int page,int size){
+        List<Product> list = null;
+        long start = (page-1)*size;
+        long end = start+size-1;
+        try {
+            list = this.redisTemplate.opsForList().range(Constants.JHS_KEY,start,end);
+            if(CollectionUtils.isEmpty(list)){
+
+            }
+            log.info("查询结果：{}",list);
+        }catch (Exception ex){
+            log.error("exception",ex);
+        }
+        return list;
+    }
+
 
     /**
      * 将object对象里面的属性和值转换为Map对象
