@@ -20,3 +20,8 @@ SpringCache:
 对于reids缓存 springcache 只支持String
 对于Hash List set Zset 只能用RedisTemplate
 对于多表查询的数据缓存，springcache不支持   多表查询智能用RedisTemplate
+
+缓存击穿：
+  针对定时更新任务的特定场景，采用主从轮询的方式来实现，
+     步骤1：开辟两块缓存，A和B 定时器在更新缓存的时候，先更新B，再更新A，
+     步骤2：用户先查询A 如果A没有在查询B
