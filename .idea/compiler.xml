@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-mybatis-plus" />
+        <module name="java-thread" />
         <module name="mybatis-plus-generator-code" />
         <module name="springboot3-01-first" />
         <module name="spring-redis" />

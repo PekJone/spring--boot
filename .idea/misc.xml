@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/springboot-mybatis-plus/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis-plus-generator-code/pom.xml" />
         <option value="$PROJECT_DIR$/spring-redis/pom.xml" />
+        <option value="$PROJECT_DIR$/java-thread/pom.xml" />
       </list>
     </option>
   </component>

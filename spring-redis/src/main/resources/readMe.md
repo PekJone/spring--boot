@@ -48,6 +48,94 @@ SpringCache:
           c.节点数量受限 ,节点数量N的选择会影响数据分布均匀性，通常建议使用质数作为节点数，以减少哈希冲突。
  方式二：一致性哈希分区原理：
  方式三：哈希槽分区原理
-     
+
+
+docker create --name redis-node-1 --net host --privileged=true -v /data/redis/share/redis-node-1:/data redis:latest --cluster-enabled yes --appendonly yes --port 6381
+docker create --name redis-node-2 --net host --privileged=true -v /data/redis/share/redis-node-2:/data redis:5.0.7 --cluster-enabled yes --appendonly yes --port 6382
+docker create --name redis-node-3 --net host --privileged=true -v /data/redis/share/redis-node-3:/data redis:5.0.7 --cluster-enabled yes --appendonly yes --port 6383
+docker create --name redis-node-4 --net host --privileged=true -v /data/redis/share/redis-node-4:/data redis:5.0.7 --cluster-enabled yes --appendonly yes --port 6384
+docker create --name redis-node-5 --net host --privileged=true -v /data/redis/share/redis-node-5:/data redis:5.0.7 --cluster-enabled yes --appendonly yes --port 6385
+docker create --name redis-node-6 --net host --privileged=true -v /data/redis/share/redis-node-6:/data redis:5.0.7 --cluster-enabled yes --appendonly yes --port 6386
+
+
+docker exec -it redis-node-1 /bin/bash
+分配主从
+redis-cli --cluster create 139.196.72.239:6381   139.196.72.239:6382  139.196.72.239:6383  139.196.72.239:6384  139.196.72.239:6385  139.196.72.239:6386 --cluster-replicas 1
+
+>>> Performing hash slots allocation on 6 nodes...
+Master[0] -> Slots 0 - 5460  #给主节点分配槽的位数
+Master[1] -> Slots 5461 - 10922
+Master[2] -> Slots 10923 - 16383
+Adding replica 139.196.72.239:6385 to 139.196.72.239:6381  #后面位主节点 前面位从节点
+Adding replica 139.196.72.239:6386 to 139.196.72.239:6382
+Adding replica 139.196.72.239:6384 to 139.196.72.239:6383
+> [WARNING] Some slaves are in the same host as their master
+M: f190d64c080c283de3b52568c4cfd2f8b316c173 139.196.72.239:6381
+slots:[0-5460] (5461 slots) master   #给主节点分配槽的位数
+M: ba463e7420b321b8f31bbe3b4187cf5ee3e8780d 139.196.72.239:6382
+slots:[5461-10922] (5462 slots) master
+M: 4711f07838b42927271e72f9a31cf0eabb3b5040 139.196.72.239:6383
+slots:[10923-16383] (5461 slots) master
+S: 4aabee3b2511daea1b35a8ec47b6b16ffa650b79 139.196.72.239:6384
+replicates ba463e7420b321b8f31bbe3b4187cf5ee3e8780d  #从节点复制了主节点
+S: 7f32e7d0767b4cec41301c3bc61c974669ada701 139.196.72.239:6385
+replicates 4711f07838b42927271e72f9a31cf0eabb3b5040
+S: 1266810468c624789f50c52d610984a5f256d445 139.196.72.239:6386
+replicates f190d64c080c283de3b52568c4cfd2f8b316c173
+Can I set the above configuration? (type 'yes' to accept): yes  #是否同意以上配置 选择yes
+>>> Nodes configuration updated
+>>> Assign a different config epoch to each node
+>>> Sending CLUSTER MEET messages to join the cluster
+Waiting for the cluster to join
+....
+>>> Performing Cluster Check (using node 139.196.72.239:6381)
+M: f190d64c080c283de3b52568c4cfd2f8b316c173 139.196.72.239:6381
+slots:[0-5460] (5461 slots) master
+1 additional replica(s)
+M: ba463e7420b321b8f31bbe3b4187cf5ee3e8780d 139.196.72.239:6382
+slots:[5461-10922] (5462 slots) master
+1 additional replica(s)
+S: 4aabee3b2511daea1b35a8ec47b6b16ffa650b79 139.196.72.239:6384
+slots: (0 slots) slave
+replicates ba463e7420b321b8f31bbe3b4187cf5ee3e8780d
+S: 1266810468c624789f50c52d610984a5f256d445 139.196.72.239:6386
+slots: (0 slots) slave
+replicates f190d64c080c283de3b52568c4cfd2f8b316c173
+S: 7f32e7d0767b4cec41301c3bc61c974669ada701 139.196.72.239:6385
+slots: (0 slots) slave
+replicates 4711f07838b42927271e72f9a31cf0eabb3b5040
+M: 4711f07838b42927271e72f9a31cf0eabb3b5040 139.196.72.239:6383
+slots:[10923-16383] (5461 slots) master
+1 additional replica(s)
+[OK] All nodes agree about slots configuration.
+>>> Check for open slots...
+>>> Check slots coverage...
+进入容器：  redis-cli -h 139.196.72.239 -p 6381 -c 
+> 查看集群状态：cluster info
+> 
+> cluster_state:ok  集群状态
+cluster_slots_assigned:16384  分配槽的位数
+ cluster_slots_ok:16384  准确分配的槽位
+cluster_slots_pfail:0
+cluster_slots_fail:0
+cluster_known_nodes:6  当前接点数
+cluster_size:3
+cluster_current_epoch:6
+cluster_my_epoch:1
+cluster_stats_messages_ping_sent:461
+cluster_stats_messages_pong_sent:436
+cluster_stats_messages_sent:897
+cluster_stats_messages_ping_received:431
+cluster_stats_messages_pong_received:461
+cluster_stats_messages_meet_received:5
+cluster_stats_messages_received:897
+cluster nodes  查看接点状态
+
+
+
+添加接点： redis-cli --cluster add-node  139.196.72.239:6387 139.196.72.239:6381
+第一个接点是需要加入的节点  第二个节点是原有的节点 
+
+重新分配槽点：redis-cli --cluster reshard ip:port  输入任何一个节点即可 
 
 
