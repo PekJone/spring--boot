@@ -1,5 +1,10 @@
 package runnable;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 /**
  * @author 王朋飞
  * @version 1.0
@@ -45,5 +50,6 @@ public class Race implements Runnable{
         Race race = new Race();
         new Thread(race,"兔子").start();
         new Thread(race,"乌龟").start();
+        System.out.println(Runtime.getRuntime().availableProcessors());
     }
 }

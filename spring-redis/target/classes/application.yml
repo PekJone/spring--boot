@@ -1,0 +1,46 @@
+spring:
+  mvc:
+    contentnegotiation:
+      media-types:
+        yaml:
+          text/yaml
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: springBoot
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 9370
+      repositories:
+        enabled: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot3
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+server:
+  port: 9090
+
+#答打印SQL日志
+logging:
+  logback:
+    rollingpolicy:
+      #启动项目时是否清理归档日志
+      clean-history-on-start: false
+      #日志文件达到多大时进行归档
+      max-file-size: 100KB
+      #归档日志文件最多保留几天
+      max-history: 60
+      #所有归档日志文件达到多大时进行删除  默认0B  表示不删除
+      total-size-cap: 50GB
+      #归档文件日志名的格式
+      file-name-pattern: ${LOG.FILE}.%d{yyyy-MM-dd}.%i.gz
+
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true

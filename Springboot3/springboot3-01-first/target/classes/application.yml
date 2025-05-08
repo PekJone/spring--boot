@@ -1,0 +1,104 @@
+
+spring:
+  mvc:
+    contentnegotiation:
+      media-types:
+        yaml:
+          text/yaml
+  application:
+   name: springBoot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot3
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+
+#答打印SQL日志
+logging:
+  logback:
+    rollingpolicy:
+      #启动项目时是否清理归档日志
+      clean-history-on-start: false
+      #日志文件达到多大时进行归档
+      max-file-size: 100KB
+      #归档日志文件最多保留几天
+      max-history: 60
+      #所有归档日志文件达到多大时进行删除  默认0B  表示不删除
+      total-size-cap: 50GB
+      #归档文件日志名的格式
+      file-name-pattern: ${LOG.FILE}.%d{yyyy-MM-dd}.%i.gz
+
+  file:
+    path: ./log/
+  level:
+    org:
+      com:
+        learn:
+          mapper:
+            debug
+#让springboot的静态资源处理失效
+#  web:
+#    resources:
+#      add-mappings: false
+#  web:
+#    resources:
+#      cache:
+#        period: 100
+#        cachecontrol:
+#          max-age: 20
+#          #缓存位置设置，可以在任何地方缓存
+#          cache-public: true
+#        #是否启用最后一次修改时间的比对
+#        use-last-modified: true
+
+
+
+mybatis:
+  mapper-locations:
+    - classpath:/mapper/*.xml
+  #自动映射表的列名和bean的属性名  启动自动映射
+  configuration:
+    map-underscore-to-camel-case: true
+#mybatis-plus:
+#  mapper-locations: classpath:/mapper/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true
+#myapp:
+#  username: wang
+#  password: 123456
+#  age: 2
+#
+#app:
+#  name: testwang
+#  address:
+#    city: taiyuan
+#    street: yihao
+#
+#
+#app2:
+#  abc:
+#    names[0]: wang
+#    names[1]: chen
+#    addresses[0]:
+#      city: Beijing
+#      street: chaoyang
+#    addresses[1]:
+#      city: Beijing1
+#      street: chaoyang1
+#    addressList[0]:
+#      city: Beijing_list
+#      street: chaoyang_list
+#    addressList[1]:
+#      city: Beijing1_list
+#      street: chaoyang1_list
+#    addrs:
+#      addr1:
+#        city: Beijing_Map
+#        street: chaoyang_Map
+#      addr2:
+#        city: Beijing1_Map
+#        street: chaoyang_Map
+
+
