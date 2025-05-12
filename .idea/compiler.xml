@@ -11,6 +11,7 @@
         <module name="java-thread" />
         <module name="mybatis-plus-generator-code" />
         <module name="springboot3-01-first" />
+        <module name="springboot-shardphere" />
         <module name="spring-redis" />
       </profile>
     </annotationProcessing>
@@ -20,6 +21,7 @@
       <module name="mybatis-plus-generator-code" options="-parameters" />
       <module name="spring-redis" options="-parameters" />
       <module name="springboot-mybatis-plus" options="-parameters" />
+      <module name="springboot-shardphere" options="-parameters" />
       <module name="springboot3-01-first" options="-parameters" />
     </option>
   </component>
